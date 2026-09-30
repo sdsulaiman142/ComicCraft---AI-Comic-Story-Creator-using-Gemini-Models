@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ comic.title }} — ComicCraft
+{% endblock %}
+
+
+{% block content %}
+
+<div class="preview-header">
+
+    <div>
+
+        <p class="eyebrow">
+            COMIC PREVIEW
+        </p>
+
+        <h1>
+            {{ comic.title }}
+        </h1>
+
+    </div>
+
+
+    {% if mock_mode %}
+
+    <span class="badge">
+        LOCAL MOCK MODE
+    </span>
+
+    {% endif %}
+
+</div>
+
+
+<div class="comic-grid">
+
+    {% for panel in comic.layout %}
+
+    <article class="comic-panel">
+
+        <div class="panel-number">
+            PANEL {{ panel.panel_number }}
+        </div>
+
+
+        <h2>
+            {{ panel.title }}
+        </h2>
+
+
+        <img
+            src="{{ panel.image_path }}"
+            alt="Illustration for panel {{ panel.panel_number }}"
+            loading="lazy"
+        >
+
+
+        <p class="scene">
+            <em>
+                {{ panel.scene_description }}
+            </em>
+        </p>
+
+
+        {% if panel.caption %}
+
+        <p class="caption">
+            {{ panel.caption }}
+        </p>
+
+        {% endif %}
+
+
+        {% if panel.narration %}
+
+        <p>
+            <strong>Narration:</strong>
+            {{ panel.narration }}
+        </p>
+
+        {% endif %}
+
+
+        {% if panel.dialogue %}
+
+        <div class="dialogue">
+
+            {% for line in panel.dialogue %}
+
+            <p>
+                “{{ line }}”
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <details>
+
+            <summary>
+                Image prompt
+            </summary>
+
+            <p>
+                {{ panel.image_prompt }}
+            </p>
+
+        </details>
+
+    </article>
+
+    {% endfor %}
+
+</div>
+
+
+<section class="actions card">
+
+    <button
+        class="primary-button"
+        id="download-button"
+        data-pdf-url="{{ comic.pdf_url }}"
+    >
+        Download Your Comic as PDF
+    </button>
+
+
+    <a
+        class="secondary-button"
+        href="/"
+    >
+        Create Another Comic
+    </a>
+
+
+    <p
+        id="download-status"
+        class="form-note"
+    ></p>
+
+</section>
+
+{% endblock %}

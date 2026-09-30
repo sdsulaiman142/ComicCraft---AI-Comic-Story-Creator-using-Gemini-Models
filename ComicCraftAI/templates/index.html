@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}
+ComicCraft — Create a Comic
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+
+        <p class="eyebrow">
+            CREATE • IMAGINE • SHARE
+        </p>
+
+        <h1>
+            Turn one idea into a five-panel comic.
+        </h1>
+
+        <p class="lead">
+            Describe your story, character, setting,
+            tone, and art style. ComicCraft turns
+            them into a complete illustrated comic
+            and PDF.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="card form-card">
+
+    <form
+        action="/generate"
+        method="post"
+        id="comic-form"
+    >
+
+        <label for="story_prompt">
+            Story Prompt
+        </label>
+
+        <textarea
+            id="story_prompt"
+            name="story_prompt"
+            rows="5"
+            maxlength="2000"
+            required
+            placeholder="A brave fox explores an enchanted forest and discovers a friendly glowing tree."
+        ></textarea>
+
+
+        <div class="grid-2">
+
+            <div>
+
+                <label for="character_name">
+                    Main Character Name
+                </label>
+
+                <input
+                    id="character_name"
+                    name="character_name"
+                    maxlength="80"
+                    required
+                    placeholder="Fenn"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="setting">
+                    Setting
+                </label>
+
+                <select
+                    id="setting"
+                    name="setting"
+                >
+
+                    <option>forest</option>
+                    <option>school</option>
+                    <option>space</option>
+                    <option>city</option>
+                    <option>underwater kingdom</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label for="tone">
+                    Story Tone
+                </label>
+
+                <select
+                    id="tone"
+                    name="tone"
+                >
+
+                    <option>light-hearted</option>
+                    <option>dramatic</option>
+                    <option>poetic</option>
+                    <option>funny</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label for="art_style">
+                    Art Style
+                </label>
+
+                <select
+                    id="art_style"
+                    name="art_style"
+                >
+
+                    <option>comic book</option>
+                    <option>anime</option>
+                    <option>pixel art</option>
+                    <option>realistic</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            type="submit"
+            id="generate-button"
+        >
+            Generate My Comic
+        </button>
+
+
+        <p class="form-note">
+            Five panels • story + dialogue •
+            illustrations • PDF export
+        </p>
+
+    </form>
+
+</section>
+
+{% endblock %}
